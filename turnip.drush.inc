@@ -48,9 +48,11 @@ function drush_turnip_init() {
   $url = drush_get_option('repo', 'https://github.com/opensourcery/turnip.git');
   $branch = drush_get_option('branch', '7.x');
 
-  drush_confirm("A Turnip project will be initialized in $directory. Is this okay?");
+  if (!drush_confirm("A Turnip project will be initialized in $directory. Is this okay?")) {
+    return drush_user_abort(dt('Turnip initialization aborted.'));
+  }
 
-  $clone_command = 'git clone %s %s';
+  $clone_command = 'git clone -o turnip %s %s';
   if (!drush_shell_exec($clone_command, $url, $directory)) {
     drush_set_error(dt('Could not clone repository @repo into directory @dir',
         array(
