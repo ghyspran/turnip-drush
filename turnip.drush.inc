@@ -29,7 +29,18 @@ function turnip_drush_command() {
     'arguments' => array(
       'directory' => dt('The directory to create the Turnip project in'),
     ),
-    'options' => array(),
+    'options' => array(
+      'repo' => array(
+        'description' => 'The URL for the git repo.',
+        'example_value' => 'https://github.com/opensourcery/turnip.git',
+        'value' => 'optional',
+      ),
+      'branch' => array(
+        'description' => 'The branch, tag, or commit hash that you want to check out.',
+        'example_value' => '7.x',
+        'value' => 'optional',
+      ),
+    ),
     'bootstrap' => DRUSH_BOOTSTRAP_DRUSH,
   );
 
