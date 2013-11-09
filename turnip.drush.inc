@@ -41,6 +41,10 @@ function turnip_drush_command() {
         'value' => 'optional',
       ),
     ),
+    'examples' => array(
+      'drush ti turnip' => 'Initialize a new Turnip project in the directory turnip by cloning the (default) 7.x branch of the (default) https://github.com/opensourcery/turnip.git repo.',
+    ),
+    'aliases' => array('ti'),
     'bootstrap' => DRUSH_BOOTSTRAP_DRUSH,
   );
 
