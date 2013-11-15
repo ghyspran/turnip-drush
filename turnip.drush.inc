@@ -104,17 +104,17 @@ function drush_turnip_init() {
         )));
   }
 
-  drush_log(dt('Turnip clone from @repo into directory @dir',
+  drush_log(dt('Turnip cloned from @repo into directory @dir',
       array(
         '@repo' => $url,
         '@dir' => $directory,
-      )));
+      )), 'ok');
   $cwd = getcwd();
   chdir($directory);
 
   $checkout_command = 'git checkout %s';
   if (drush_shell_exec($checkout_command, $branch)) {
-    drush_log(dt('Checked out @branch', array('@branch', $branch)));
+    drush_log(dt('Checked out @branch', array('@branch' => $branch)), 'ok');
   }
 }
 
