@@ -72,6 +72,17 @@ function turnip_drush_command() {
     ),
     'bootstrap' => DRUSH_BOOTSTRAP_MAX,
   );
+  $items['turnip-clean'] = array(
+    'description' => dt('Remove directories and files from a previous build.'),
+    'arguments' => array(),
+    'options' => array(
+      'directory' => array(
+        'description' => 'The Turnip root directory',
+        'value' => 'optional',
+      ),
+    ),
+    'bootstrap' => DRUSH_BOOTSTRAP_MAX,
+  );
 
   return $items;
 }
@@ -126,6 +137,10 @@ function drush_turnip_rebuild() {
   _turnip_run_command('_turnip_rebuild');
 }
 
+function drush_turnip_clean() {
+  _turnip_run_command('_turnip_clean');
+}
+
 /**
  * Load the supplied command from Turnip.
  */
@@ -150,7 +165,7 @@ function _turnip_run_command($command) {
   }
 
   // Once we have Turnip's root directory, we can load the function definitions.
-  if (include($turnip_root . '/includes/drush.inc')) {
+  if (include($turnip_root . '/lib/drush.inc')) {
     $command($turnip_root);
   }
   else {
