@@ -177,7 +177,9 @@ function _turnip_make_init() {
 
   // Move Turnip README.md to README.dist.md
   drush_op('rename', 'README.md', 'README.dist.md');
-  drush_op('file_put_contents', 'README.md', sprintf("##%s", $proj_name . "\n\n" . $proj_desc));
+  drush_op('rename', 'project_readme.md', 'README.md');
+  drush_shell_exec(sprintf('sed -e "s/PROJECTNAME/%1$s/" -i.orig README.md', $proj_name));
+  drush_shell_exec(sprintf('sed -e "s/PROJECTDESCRIPTION/%1$s/" -i.orig README.md', $proj_desc));
 
   // Allow skipping initializing the theme.
   // @TODO Update this to print theme system requirements before prompting.
